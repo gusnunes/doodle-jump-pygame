@@ -1,11 +1,6 @@
 import pygame
 
 class DoodleJumpGame:
-    # definindo cores
-    WHITE = 255, 255, 255
-    RED   = 255, 0, 0
-    BLACK = 0, 0, 0
-
     def __init__(self, width, height):
         self.width  = width
         self.height = height
