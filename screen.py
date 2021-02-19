@@ -14,5 +14,8 @@ class Screen:
     def draw_background(self):
         self.screen.blit(self.background, (0, 0))
     
+    def draw_sprites(self, image, rect):
+        self.screen.blit(image,rect)
+    
     def update(self):
         pygame.display.update()
