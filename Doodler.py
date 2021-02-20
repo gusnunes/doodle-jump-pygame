@@ -7,23 +7,20 @@ class Doodler(pygame.sprite.Sprite):
     def __init__(self, coord_x, coord_y):
         pygame.sprite.Sprite.__init__(self)
         
-        self.image   = pygame.image.load("images/doodler_r.png")
-        self.rect    = self.image.get_rect(topleft=(coord_x,coord_y)) # coordenada inicial
-        self.speed   = 0
-        self.is_jump = False
+        self.image = pygame.image.load("images/doodler_r.png")
+        self.rect  = self.image.get_rect(topleft=(coord_x,coord_y)) # coordenada inicial
+
+    def shoot(self):
+        pass
 
     # controla o movimento do jogador
-    def key_pressed(self,key):
-        if key[pygame.K_UP]:
-            self.rect[1] -= 10
+    def left_movement(self):
+        self.image = pygame.image.load("images/doodler_l.png")
+        self.rect[0] -= 5
 
-        elif key[pygame.K_LEFT]:
-            self.image   = pygame.image.load("images/doodler_l.png")
-            self.rect[0] -= 10
-
-        elif key[pygame.K_RIGHT]:
-            self.image   = pygame.image.load("images/doodler_r.png")
-            self.rect[0] += 10
+    def right_movement(self):
+        self.image = pygame.image.load("images/doodler_r.png")
+        self.rect[0] += 5
     
     def update(self):
         pass
