@@ -11,8 +11,11 @@ class DoodleJumpGame:
         self.doodler = Doodler(Screen.WIDTH/2, Screen.HEIGHT/2)
     
     def key_pressed(self, key):
-        if key[pygame.K_RIGHT] or key[pygame.K_LEFT]:
-            self.doodler.key_pressed(key)
+        if key[pygame.K_RIGHT]:
+            self.doodler.right_movement()
+
+        elif key[pygame.K_LEFT]:
+            self.doodler.left_movement()
     
     def run(self):
         while True:
@@ -23,8 +26,10 @@ class DoodleJumpGame:
                     pygame.quit()
                 
                 if event.type == pygame.KEYDOWN:   # pressinou e soltou a tecla
-                    self.doodler.key_pressed(pygame.key.get_pressed())
-                
+                    key = pygame.key.get_pressed()
+                    if key[pygame.K_UP] or key[pygame.K_SPACE]:
+                        self.doodler.shoot()
+
             self.key_pressed(pygame.key.get_pressed())   # manteve a tecla pressionada
             self.screen.draw_background()
             self.screen.draw_sprites(self.doodler.image, self.doodler.rect)
