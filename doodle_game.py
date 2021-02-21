@@ -22,10 +22,10 @@ class DoodleJumpGame:
     
     def key_pressed(self, key):
         # TODO: colocar WASD para controlar movimento e shoot
-        if key[pygame.K_RIGHT]:
+        if key[pygame.K_RIGHT] or key[pygame.K_d]:
             self.doodler.right_movement()
 
-        elif key[pygame.K_LEFT]:
+        elif key[pygame.K_LEFT] or key[pygame.K_a]:
             self.doodler.left_movement()
     
     def run(self):
