@@ -28,11 +28,8 @@ class DoodleJumpGame:
         elif key[pygame.K_LEFT] or key[pygame.K_a]:
             self.doodler.left_movement()
     
-    def run(self):
-        while True:
-            self.clock.tick(DoodleJumpGame.FPS)
-
-            for event in pygame.event.get():
+    def check_events(self):
+        for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                 
@@ -40,13 +37,21 @@ class DoodleJumpGame:
                     key = pygame.key.get_pressed()
                     if key[pygame.K_UP] or key[pygame.K_SPACE] or key[pygame.K_w]:
                         self.doodler.shoot()
-                      
-            self.key_pressed(pygame.key.get_pressed())   # manteve a tecla pressionada
-            self.screen.draw_background()
+        
+        self.key_pressed(pygame.key.get_pressed())   # manteve a tecla pressionada
+    
+    def draw(self):
+        self.screen.draw_background()
+        self.screen.draw_doodler(self.doodler.image, self.doodler.rect)
+        self.screen.update()
+
+    def run(self):
+        while True:
+            self.clock.tick(DoodleJumpGame.FPS)
+            self.check_events()
+            self.draw()
             self.check_border()
-            self.screen.draw_doodler(self.doodler.image, self.doodler.rect)
-            self.screen.update()
-            
+
 def main():
     game = DoodleJumpGame()
     game.run()
