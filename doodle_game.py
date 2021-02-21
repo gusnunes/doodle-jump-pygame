@@ -1,3 +1,4 @@
+# Classe reponsável por controlar o fluxo (e a lógica) do jogo
 import pygame
 from doodler import Doodler
 from screen import Screen
