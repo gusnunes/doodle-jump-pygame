@@ -7,14 +7,13 @@ class Screen:
 
     def __init__(self):
         pygame.display.set_caption("Doodle Jump")
-
+        self.screen = pygame.display.set_mode((Screen.WIDTH,Screen.HEIGHT))
         self.background = pygame.image.load("images/background.png")
-        self.screen     = pygame.display.set_mode((Screen.WIDTH,Screen.HEIGHT))
     
     def draw_background(self):
         self.screen.blit(self.background, (0, 0))
     
-    def draw_sprites(self, image, rect):
+    def draw_doodler(self, image, rect):
         self.screen.blit(image,rect)
     
     def update(self):
