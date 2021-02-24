@@ -10,7 +10,7 @@ class Platform(pygame.sprite.Sprite):
 
         self.image = self.images[0]   # primeira plataforma de teste (somente a verde)
         self.rect = self.image.get_rect(center=(coord_x,coord_y))
-        self.mask = pygame.mask.from_surface(self.image)   # usado para detectar colisao
+        self.mask = pygame.mask.from_surface(self.image)
     
     def update():
         pass
