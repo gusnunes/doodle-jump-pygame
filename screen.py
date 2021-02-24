@@ -15,6 +15,9 @@ class Screen:
     
     def draw_doodler(self, image, rect):
         self.screen.blit(image,rect)
-    
+
+    def draw_platform(self, image, rect):
+        self.screen.blit(image,rect)
+
     def update(self):
         pygame.display.update()
