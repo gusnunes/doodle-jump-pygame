@@ -2,8 +2,8 @@
 import pygame
 
 class Doodler(pygame.sprite.Sprite):
-    SPEED = 5   # controlar velocidade dos movimentos
-    GRAVITY = 0.8   # controlar o pulo do jogador
+    # fisica relacionada aos movimentos
+    SPEED = 5
 
     def __init__(self, coord_x, coord_y):
         pygame.sprite.Sprite.__init__(self)
@@ -15,20 +15,24 @@ class Doodler(pygame.sprite.Sprite):
 
         self.image = self.images[0]   # imagem atual do Doodler
 
-        # hitbox = cria um retangulo do tamanho da imagem (para usar coordenadas)
+        # hitbox = retangulo do tamanho da imagem (para usar coordenadas)
         self.rect = self.image.get_rect(center=(coord_x,coord_y)) 
+
+        # movimento do jogador (posicao onde se encontra)
+        self.pos_x = coord_x
+        self.pos_y = coord_y
 
     def shoot(self):
         pass
 
-    # controla o movimento do jogador
     def left_movement(self):
         self.image = self.images[0]
-        self.rect.x -= Doodler.SPEED
+        self.pos_x -= Doodler.SPEED 
 
     def right_movement(self):
         self.image = self.images[1]
-        self.rect.x += Doodler.SPEED
+        self.pos_x += Doodler.SPEED
     
     def update(self):
-        pass
+        self.pos_y += Doodler.SPEED
+        self.rect.center = (self.pos_x, self.pos_y)
