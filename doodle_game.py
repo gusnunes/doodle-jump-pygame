@@ -2,6 +2,8 @@
 import pygame
 from doodler import Doodler
 from screen import Screen
+from platform import Platform
+import time
 
 class DoodleJumpGame:
     FPS = 30
@@ -12,6 +14,8 @@ class DoodleJumpGame:
         self.screen  = Screen()
         self.clock   = pygame.time.Clock()
         self.doodler = Doodler(Screen.WIDTH/2, Screen.HEIGHT/2)
+
+        self.p1 = Platform(Screen.WIDTH/2, Screen.HEIGHT/2 + 130)
     
     # jogador aparece do lado oposto ao passar pela borda
     def check_border(self):
@@ -39,9 +43,16 @@ class DoodleJumpGame:
                         self.doodler.shoot()
         
         self.key_pressed(pygame.key.get_pressed())   # manteve a tecla pressionada
-    
+        
+    def check_collide(self):
+        hits = pygame.sprite.collide_mask(self.doodler,self.p1)
+        if hits:
+            time.sleep(1)
+            self.doodler.pos_y -= self.doodler.SPEED * 20
+
     def draw(self):
         self.screen.draw_background()
+        self.screen.draw_platform(self.p1.image, self.p1.rect)
         self.screen.draw_doodler(self.doodler.image, self.doodler.rect)
         self.screen.update()
 
@@ -49,8 +60,9 @@ class DoodleJumpGame:
         while True:
             self.clock.tick(DoodleJumpGame.FPS)
             self.check_events()
-            self.draw()
             self.doodler.update()
+            self.draw()
+            self.check_collide()
             self.check_border()
 
 def main():
