@@ -18,6 +18,9 @@ class Doodler(pygame.sprite.Sprite):
         # hitbox = retangulo do tamanho da imagem (para usar coordenadas)
         self.rect = self.image.get_rect(center=(coord_x,coord_y)) 
 
+        # mascara usada para detectar colisao
+        self.mask = pygame.mask.from_surface(self.image)
+
         # movimento do jogador (posicao onde se encontra)
         self.pos_x = coord_x
         self.pos_y = coord_y
