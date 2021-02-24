@@ -13,13 +13,13 @@ class DoodleJumpGame:
         self.clock   = pygame.time.Clock()
         self.doodler = Doodler(Screen.WIDTH/2, Screen.HEIGHT/2)
     
-    # Jogador aparece do lado oposto ao passar pela borda
+    # jogador aparece do lado oposto ao passar pela borda
     def check_border(self):
         if self.doodler.rect.centerx > self.screen.WIDTH:
-            self.doodler.rect.centerx = 0
+            self.doodler.pos_x = 0
         
         elif self.doodler.rect.centerx < 0:
-            self.doodler.rect.centerx = self.screen.WIDTH
+            self.doodler.pos_x = self.screen.WIDTH
 
     def key_pressed(self, key):
         if key[pygame.K_RIGHT] or key[pygame.K_d]:
@@ -50,6 +50,7 @@ class DoodleJumpGame:
             self.clock.tick(DoodleJumpGame.FPS)
             self.check_events()
             self.draw()
+            self.doodler.update()
             self.check_border()
 
 def main():
